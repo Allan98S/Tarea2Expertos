@@ -53,7 +53,16 @@ public function getRedes(){
      * funcion para obtener el recinto con el estilo de aprendizaje de la BD
      */
 public function getRecintosEstilo(){
-    $sql="Select * from recintoestilo";
+    $sql="Select * from recintoestilo order by Estilo";
+    $sentencia=$this->conexion_db->prepare($sql);
+    $sentencia->execute(array());
+    $resultado=$sentencia->fetchAll(PDO::FETCH_ASSOC);
+    $sentencia->closeCursor();
+    return $resultado;
+    $this->conexion_db=null;
+}
+public function getCountRecintosEstilo(){
+    $sql="Select count(Estilo) as numeroTuplas  FROM recintoestilo; ";
     $sentencia=$this->conexion_db->prepare($sql);
     $sentencia->execute(array());
     $resultado=$sentencia->fetchAll(PDO::FETCH_ASSOC);

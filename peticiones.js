@@ -16,7 +16,7 @@ $(document).ready(function () {
         });
         
         function procesarDatosAdivinarEstilo(datos_devueltos) { // datosDeuveltos es el json que viene de PHP
-        $("#adivinarEstiloFinal").html("<p>"+datos_devueltos.Estilo+"</p>");
+        $("#adivinarEstiloFinal").html("<p>"+datos_devueltos.estiloFinal+"</p>");
         
         }
 
