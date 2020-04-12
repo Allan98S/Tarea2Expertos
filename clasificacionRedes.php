@@ -11,9 +11,9 @@ $numeroEnlaces=isset($_GET['numeroEnlaces']) ? $_GET['numeroEnlaces'] : $_POST['
 
 $logica=new Logica();
 $array = new stdClass();
-$arrayA=array($confiabilidad,$capacidad,$costo,$numeroEnlaces);
+$arrayA=array($confiabilidad,$numeroEnlaces,$capacidad,$costo);
 
-$array->ClasificacionRed =$logica->adivinarClasificacionRed($arrayA);
+$array->ClasificacionRed =$logica->calculoBayesRedes($arrayA);
 $json = json_encode($array);
 echo $json;
 

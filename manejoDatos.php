@@ -13,8 +13,8 @@ class ManejoDatos extends Conexion{
      * @return array resultado
      * funcion para obtener el tipo de aprendizaje de la BD
      */
-public function getEstiloSexoPromedioRecinto(){
-   $sql="Select * from estilosexopromediorecinto";
+public function getEstiloSexoPromedioRecintoByRecinto(){
+   $sql="Select Sexo,Promedio,Estilo,Recinto from estilosexopromediorecinto order by Recinto ;";
    $sentencia=$this->conexion_db->prepare($sql);
    $sentencia->execute(array());
    $resultado=$sentencia->fetchAll(PDO::FETCH_ASSOC);
@@ -22,12 +22,30 @@ public function getEstiloSexoPromedioRecinto(){
    return $resultado;
    $this->conexion_db=null;
 }
+public function getEstiloSexoPromedioRecintoBySexo(){
+    $sql="Select Promedio,Estilo,Recinto,Sexo from estilosexopromediorecinto order by Sexo ;";
+    $sentencia=$this->conexion_db->prepare($sql);
+    $sentencia->execute(array());
+    $resultado=$sentencia->fetchAll(PDO::FETCH_ASSOC);
+    $sentencia->closeCursor();
+    return $resultado;
+    $this->conexion_db=null;
+ }
+ public function getEstiloSexoPromedioRecintoByEstilo(){
+    $sql="Select Promedio,Recinto,Sexo,Estilo from estilosexopromediorecinto order by Estilo ;";
+    $sentencia=$this->conexion_db->prepare($sql);
+    $sentencia->execute(array());
+    $resultado=$sentencia->fetchAll(PDO::FETCH_ASSOC);
+    $sentencia->closeCursor();
+    return $resultado;
+    $this->conexion_db=null;
+ }
  /**
      * @return array resultado
      * funcion para obtener los profesores de la BD
      */
 public function getProfesores(){
-    $sql="Select * from profesores";
+    $sql="Select * from profesores order by Class";
     $sentencia=$this->conexion_db->prepare($sql);
     $sentencia->execute(array());
     $resultado=$sentencia->fetchAll(PDO::FETCH_ASSOC);
@@ -40,7 +58,7 @@ public function getProfesores(){
      * funcion para obtener las redes de la BD
      */
 public function getRedes(){
-    $sql="Select * from redes";
+    $sql="Select * from redes order by Class";
     $sentencia=$this->conexion_db->prepare($sql);
     $sentencia->execute(array());
     $resultado=$sentencia->fetchAll(PDO::FETCH_ASSOC);
@@ -63,6 +81,33 @@ public function getRecintosEstilo(){
 }
 public function getCountRecintosEstilo(){
     $sql="Select count(Estilo) as numeroTuplas  FROM recintoestilo; ";
+    $sentencia=$this->conexion_db->prepare($sql);
+    $sentencia->execute(array());
+    $resultado=$sentencia->fetchAll(PDO::FETCH_ASSOC);
+    $sentencia->closeCursor();
+    return $resultado;
+    $this->conexion_db=null;
+}
+public function getCountEstiloSexoPromedioRecinto(){
+    $sql="Select count(Estilo) as numeroTuplas  FROM estilosexopromediorecinto; ";
+    $sentencia=$this->conexion_db->prepare($sql);
+    $sentencia->execute(array());
+    $resultado=$sentencia->fetchAll(PDO::FETCH_ASSOC);
+    $sentencia->closeCursor();
+    return $resultado;
+    $this->conexion_db=null;
+}
+public function getCountProfesores(){
+    $sql="Select count(A) as numeroTuplas  FROM profesores; ";
+    $sentencia=$this->conexion_db->prepare($sql);
+    $sentencia->execute(array());
+    $resultado=$sentencia->fetchAll(PDO::FETCH_ASSOC);
+    $sentencia->closeCursor();
+    return $resultado;
+    $this->conexion_db=null;
+}
+public function getCountRedes(){
+    $sql="Select count(Class) as numeroTuplas  FROM redes; ";
     $sentencia=$this->conexion_db->prepare($sql);
     $sentencia->execute(array());
     $resultado=$sentencia->fetchAll(PDO::FETCH_ASSOC);

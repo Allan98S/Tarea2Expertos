@@ -10,8 +10,8 @@ $recinto=isset($_GET['recinto']) ? $_GET['recinto'] : $_POST['recinto'];
 
 $logica=new Logica();
 $array = new stdClass();
-$arrayA=array($estilo_aprendizaje,$promedio,$recinto);
-$array->Sexo =$logica->adivinarSexo($arrayA);
+$arrayA=array($promedio,$estilo_aprendizaje,$recinto);
+$array->Sexo =$logica->calculoBayesSexo($arrayA);
 $json = json_encode($array);
 echo $json;
 

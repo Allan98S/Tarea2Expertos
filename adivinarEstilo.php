@@ -46,8 +46,8 @@ $or=$c2+$c6+$c10+$c22+$c26+$c30+$c34;
 $ca=$c7+$c11+$c15+$c19+$c31+$c35;
 $ea=$c4+$c12+$c24+$c28+$c32+$c36;
 
-//$arrayA=array($ca,$ec,$ea,$or);
-$arrayA=array(15,18,14,13);
+$arrayA=array($ca,$ec,$ea,$or);
+//$arrayA=array(15,18,14,13);
 
 
 $logica=new Logica();
