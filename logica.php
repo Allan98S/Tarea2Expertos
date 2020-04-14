@@ -186,7 +186,7 @@ class Logica    {
         return $matrizPosiblidades;
     }
     function getProbalidadFrecuenciaRecintoSexoEstilo($matrizInstancias,$m,$n,$probabilidadValoresCaracteristica){
-        $matrizPosiblidades= $this->inicializarMatriz2x3();
+        $matrizPosiblidades= $this->inicializarMatriz4x3();
         $length = count($matrizInstancias);
         for ($i = 0; $i < $length; $i++) {
             for ($y = 0; $y <2; $y++){
@@ -448,7 +448,7 @@ class Logica    {
     }
 
     function  getInstanciasRecinto($arrayA,$arrayB){
-        $arrayInstancias= $this->inicializarMatriz2x3();
+        $arrayInstancias= $this->inicializarMatriz4x3();
         foreach ($arrayB as $elemento) {
                  if($elemento['Sexo']==$arrayA[0] && $elemento['Recinto']=='Paraiso'){          
                    
@@ -527,7 +527,7 @@ class Logica    {
                                        
     }
     function  getInstanciasSexo($arrayA,$arrayB){
-        $arrayInstancias= $this->inicializarMatriz2x3();
+        $arrayInstancias= $this->inicializarMatriz4x3();
         foreach ($arrayB as $elemento) {
                  if($elemento['Promedio']==$arrayA[0] && $elemento['Sexo']=='m'){          
                    
