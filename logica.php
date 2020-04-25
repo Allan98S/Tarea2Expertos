@@ -15,7 +15,7 @@ class Logica    {
       $arrayPosiblidades=$this->getPeorPosibilidadEstiloAprendizaje($arrayB); //0=acomodador,1=asimilador,2=convergente,3=divergente
       $arrayValores=array(16,14,15,17);
       $probabilidadValoresCaracteristica=$this->getProbabilidadCaracteristica($arrayValores);//0=recinto,1=CA,2=EC...
-      $m=5; // Numero de atributos de la tabla
+      $m=4; // Numero de atributos de la tabla
       $n=4; // numero de personalidades de la tabla
       $matrizInstancias=$this->getInstanciasEstiloAprendizaje($arrayA,$arrayB);
       $matrizProbabilidadFrecuencias=$this->getProbalidadFrecuenciaEstiloAprendizaje($matrizInstancias,$m,$n,$probabilidadValoresCaracteristica);
@@ -44,7 +44,7 @@ class Logica    {
         $arrayPosiblidades=$this->getPeorPosibilidadEstiloRecinto($arrayB); //0=acomodador,1=asimilador,2=convergente,3=divergente
         $arrayValores=array(2,58,4);
         $probabilidadValoresCaracteristica=$this->getProbabilidadCaracteristica($arrayValores);//0=recinto,1=CA,2=EC...
-        $m=4; // Numero de atributos de la tabla
+        $m=3; // Numero de atributos de la tabla
         $n=2; // numero de recintos de la tabla
         $matrizInstancias=$this->getInstanciasRecinto($arrayA,$arrayB);
         $matrizProbabilidadFrecuencias=$this->getProbalidadFrecuenciaRecintoSexoEstilo($matrizInstancias,$m,$n,$probabilidadValoresCaracteristica);
@@ -67,7 +67,7 @@ class Logica    {
         $arrayPosiblidades=$this->getPeorPosibilidadEstiloSexo($arrayB); //0=acomodador,1=asimilador,2=convergente,3=divergente
         $arrayValores=array(58,4,2);
         $probabilidadValoresCaracteristica=$this->getProbabilidadCaracteristica($arrayValores);//0=recinto,1=CA,2=EC...
-        $m=4; // Numero de atributos de la tabla
+        $m=3; // Numero de atributos de la tabla
         $n=2; // numero de recintos de la tabla
         $matrizInstancias=$this->getInstanciasSexo($arrayA,$arrayB);
         $matrizProbabilidadFrecuencias=$this->getProbalidadFrecuenciaRecintoSexoEstilo($matrizInstancias,$m,$n,$probabilidadValoresCaracteristica);
@@ -90,7 +90,7 @@ class Logica    {
         $arrayPosiblidades=$this->getPeorPosibilidadEstiloEstiloA($arrayB); //0=acomodador,1=asimilador,2=convergente,3=divergente
         $arrayValores=array(58,2,2);
         $probabilidadValoresCaracteristica=$this->getProbabilidadCaracteristica($arrayValores);//0=recinto,1=CA,2=EC...
-        $m=4; // Numero de atributos de la tabla
+        $m=3; // Numero de atributos de la tabla
         $n=4; // numero de recintos de la tabla
         $matrizInstancias=$this->getInstanciasEstilo($arrayA,$arrayB);
         $matrizProbabilidadFrecuencias=$this->getProbalidadFrecuenciaEstilo($matrizInstancias,$m,$n,$probabilidadValoresCaracteristica);
@@ -119,7 +119,7 @@ class Logica    {
         $arrayPosiblidades=$this->getPeorPosibilidadProfesores($arrayB); 
         $arrayValores=array(3,4,3,3,3,3,3,3);
         $probabilidadValoresCaracteristica=$this->getProbabilidadCaracteristica($arrayValores);
-        $m=9; // Numero de atributos de la tabla
+        $m=8; // Numero de atributos de la tabla
         $n=3; // numero de recintos de la tabla
         $matrizInstancias=$this->getInstanciasProfesores($arrayA,$arrayB);
         $matrizProbabilidadFrecuencias=$this->getProbalidadFrecuenciaProfesores($matrizInstancias,$m,$n,$probabilidadValoresCaracteristica);
@@ -146,7 +146,7 @@ class Logica    {
         $arrayPosiblidades=$this->getPeorPosibilidadRedes($arrayB); 
         $arrayValores=array(4,13,3,3);
         $probabilidadValoresCaracteristica=$this->getProbabilidadCaracteristica($arrayValores);
-        $m=5; // Numero de atributos de la tabla
+        $m=4; // Numero de atributos de la tabla
         $n=2; // numero de recintos de la tabla
         $matrizInstancias=$this->getInstanciasRedes($arrayA,$arrayB);
         $matrizProbabilidadFrecuencias=$this->getProbalidadFrecuenciaRedes($matrizInstancias,$m,$n,$probabilidadValoresCaracteristica);
