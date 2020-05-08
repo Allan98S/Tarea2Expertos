@@ -18,7 +18,7 @@ $array = new stdClass();
 $arrayA=array($edad,$genero,$autoEvaluacion,$numeroCursoEnsenado,$areaConocimiento,$habilidadComputadora,$habilidadTecnologias,
 $habilidadesSitioWeb);
 
-$array->TipoProfesor =$logica->calculoBayesProfesor($arrayA);
+$array->TipoProfesor =$logica->adivinarEstiloProfesor($arrayA);
 $json = json_encode($array);
 echo $json;
 

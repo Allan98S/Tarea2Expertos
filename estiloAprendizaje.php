@@ -15,7 +15,7 @@ if($sexo='Masculino'){
 $logica=new Logica();
 $array = new stdClass();
 $arrayA=array($recinto,$promedio,$sexo);
-$array->Estilo =$logica->calculoBayesEstilo($arrayA);
+$array->Estilo =$logica->adivinarEstilo($arrayA);
 $json = json_encode($array);
 echo $json;
 

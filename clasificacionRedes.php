@@ -13,7 +13,7 @@ $logica=new Logica();
 $array = new stdClass();
 $arrayA=array($confiabilidad,$numeroEnlaces,$capacidad,$costo);
 
-$array->ClasificacionRed =$logica->calculoBayesRedes($arrayA);
+$array->ClasificacionRed =$logica->adivinarClasificacionRed($arrayA);
 $json = json_encode($array);
 echo $json;
 

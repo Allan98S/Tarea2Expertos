@@ -4,11 +4,26 @@ class Logica    {
  function __construct() {
 
  }
-
-   /*
-   * El array A es el que viene del formulario, array b de la base de datos
-   * 
-   */
+    //primero chequea en una tabla con resultados historicos de Bayes para esta tabla, si no coincide la entrada
+    //del usuario con los registros de dicha tabla procedera a calcular el vecino proximo con Bayes
+    function adivinarEstiloAprendizaje($arrayA){
+      $datos=new ManejoDatos();
+      $historialBayes=$datos->getRecintosEstiloBayes();
+      $estiloFinal='';
+      $bandera=false;
+      foreach ($historialBayes as $historial) {
+         if($historial['CA']==$arrayA[0] && $historial['EC']==$arrayA[1]&& $historial['EA']==$arrayA[2]&&
+         $historial['OR']== $arrayA[3] ){
+           $estiloFinal=$historial['Estilo'];
+           $bandera=true;
+           break;
+         }
+      }
+      if($bandera==false){
+        $estiloFinal=$this->calculoBayesEstiloAprendizaje($arrayA);
+      }
+      return $estiloFinal;
+    }// algoritmo de calculo de bayes para estilo de aprendizaje 1
     function calculoBayesEstiloAprendizaje($arrayA){
       $datos=new ManejoDatos();
       $arrayB=$datos->getRecintosEstilo();
@@ -38,6 +53,26 @@ class Logica    {
       }
       return $estiloFinal;
     }
+    //primero chequea en una tabla con resultados historicos de Bayes para esta tabla, si no coincide la entrada
+    //del usuario con los registros de dicha tabla procedera a calcular el vecino proximo con Bayes
+    function adivinarRecinto($arrayA){
+      $datos=new ManejoDatos();
+      $historialBayes=$datos->getEstiloSexoPromedioRecintoBayes();
+      $recintoFinal='';
+      $bandera=false;
+      foreach ($historialBayes as $historial) {
+        if($historial['Sexo']==$arrayA[0] && $historial['Promedio']==$arrayA[1] 
+           && $historial['Estilo']==$arrayA[2]){         
+             $recintoFinal=$historial['Recinto'];
+             $bandera=true;
+             break;
+        }
+      } 
+      if($bandera==false){
+        $recintoFinal=$this->calculoBayesRecinto($arrayA);
+      }
+      return $recintoFinal;
+    }// algoritmo de calculo de bayes para adivinar recinto
     function calculoBayesRecinto($arrayA){
         $datos=new ManejoDatos();
         $arrayB=$datos->getEstiloSexoPromedioRecintoByRecinto();
@@ -61,6 +96,31 @@ class Logica    {
         }
         return $recintoFinal;
     }
+    //primero chequea en una tabla con resultados historicos de Bayes para esta tabla, si no coincide la entrada
+    //del usuario con los registros de dicha tabla procedera a calcular el vecino proximo con Bayes
+    function advinarSexo($arrayA){
+      $datos=new ManejoDatos();
+      $historialBayes=$datos->getEstiloSexoPromedioRecintoBayes();
+      $sexoFinal='';
+      $bandera=false;
+      foreach ($historialBayes as $historial) {
+        if($historial['Promedio']==$arrayA[0] && $historial['Estilo']==$arrayA[1] 
+           && $historial['Recinto']==$arrayA[2]){         
+             $sexoFinal=$historial['Sexo'];
+             if($sexoFinal='M'){
+               $sexoFinal='Masculino';
+             }else{
+               $sexoFinal='Femenino';
+             }
+             $bandera=true;
+             break;
+        }
+      } 
+      if($bandera==false){
+        $sexoFinal=$this->calculoBayesSexo($arrayA);
+      }
+      return $sexoFinal;
+    }// algoritmo de calculo de bayes para adivianr sexo
     function calculoBayesSexo($arrayA){
         $datos=new ManejoDatos();
         $arrayB=$datos->getEstiloSexoPromedioRecintoBySexo();
@@ -84,6 +144,26 @@ class Logica    {
         }
         return $sexoFinal;
     }
+    //primero chequea en una tabla con resultados historicos de Bayes para esta tabla, si no coincide la entrada
+    //del usuario con los registros de dicha tabla procedera a calcular el vecino proximo con Bayes
+    function adivinarEstilo($arrayA){
+      $datos=new ManejoDatos();
+      $historialBayes=$datos->getEstiloSexoPromedioRecintoBayes();
+      $estiloFinal='';
+      $bandera=false;
+      foreach ($historialBayes as $historial) {
+        if($historial['Recinto']==$arrayA[0] && $historial['Promedio']==$arrayA[1] 
+           && $historial['Sexo']==$arrayA[2]){         
+             $estiloFinal=$historial['Estilo'];
+             $bandera=true;
+             break;
+        }
+      } 
+      if($bandera==false){
+        $estiloFinal=$this->calculoBayesEstilo($arrayA);
+      }
+      return $estiloFinal;
+    }// algoritmo de calculo de bayes para estilo de aprendizaje 2
     function calculoBayesEstilo($arrayA){
         $datos=new ManejoDatos();
         $arrayB=$datos->getEstiloSexoPromedioRecintoByEstilo();
@@ -113,6 +193,27 @@ class Logica    {
           }
         return $estiloFinal;
     }
+    //primero chequea en una tabla con resultados historicos de Bayes para esta tabla, si no coincide la entrada
+    //del usuario con los registros de dicha tabla procedera a calcular el vecino proximo con Bayes
+    function adivinarEstiloProfesor($arrayA){
+      $datos=new ManejoDatos();
+      $historialBayes=$datos->getProfesoresBayes();
+      $estiloProfesor='';
+      $bandera=false;
+      foreach ($historialBayes as $historial) {
+        if($historial['A']==$arrayA[0] && $historial['B']==$arrayA[1] 
+        && $historial['C']==$arrayA[2]&& $historial['D']==$arrayA[3]&& $historial['E']==$arrayA[4]
+        && $historial['F']==$arrayA[5]&& $historial['G']==$arrayA[6]&& $historial['H']==$arrayA[7]){         
+             $estiloProfesor=$historial['Class'];
+             $bandera=true;
+             break;
+        }
+      } 
+      if($bandera==false){
+        $estiloProfesor=$this->calculoBayesProfesor($arrayA);
+      }
+      return $estiloProfesor;
+    }// algoritmo de calculo de bayes para adivinar la clase de profesor
     function calculoBayesProfesor($arrayA){
         $datos=new ManejoDatos();
         $arrayB=$datos->getProfesores();
@@ -140,6 +241,26 @@ class Logica    {
        
         return $claseFinal;
     }
+    //primero chequea en una tabla con resultados historicos de Bayes para esta tabla, si no coincide la entrada
+    //del usuario con los registros de dicha tabla procedera a calcular el vecino proximo con Bayes
+    function adivinarClasificacionRed($arrayA){
+      $datos=new ManejoDatos();
+      $historialBayes=$datos->getRedesBayes();
+      $clasificacionRedFinal='';
+      $bandera=false;
+      foreach ($historialBayes as $historial) {
+        if($historial['Reliability (R)']==$arrayA[0] && $historial['Number of links (L)']==$arrayA[1] 
+        && $historial['Capacity (Ca)']==$arrayA[2]&& $historial['Costo (Co)']==$arrayA[3]){         
+             $clasificacionRedFinal=$historial['Class'];
+             $bandera=true;
+             break;
+        }
+      } 
+      if($bandera==false){
+        $clasificacionRedFinal=$this->calculoBayesRedes($arrayA);
+      }
+      return $clasificacionRedFinal;
+    }// algoritmo de calculo de bayes para  adivinar la clasificacion de red
     function calculoBayesRedes($arrayA){
         $datos=new ManejoDatos();
         $arrayB=$datos->getRedes();
@@ -165,7 +286,8 @@ class Logica    {
        
         return $claseFinal;
     }
-  
+     // algoritmo  que multiplica 2 matrices para el calculo de bayes, obtiene  el producto de frecuencias
+     //multiplicado por las peores posibilidaddes de cada clase
     function  getProductoFrecuenciaPorError($arrayProductoFrecuencias,$arrayPosiblidades){
         $length = count($arrayProductoFrecuencias);
         for ($i = 0; $i < $length; $i++) {
@@ -173,7 +295,7 @@ class Logica    {
         }
         return $arrayProductoFrecuencias;
     }
-    
+    //algoritmo que obtiene la Probabilidad de cada frecuencia de los distintos tipos de aprendizaje 
     function getProbalidadFrecuenciaEstiloAprendizaje($matrizInstancias,$m,$n,$probabilidadValoresCaracteristica){
         $matrizPosiblidades= $this->inicializarMatriz4x4();
         $length = count($matrizInstancias);
@@ -185,6 +307,7 @@ class Logica    {
         }
         return $matrizPosiblidades;
     }
+    //algoritmo que obtiene la Probabilidad de cada frecuencia de los distintos tipos de sexo ,recinto 
     function getProbalidadFrecuenciaRecintoSexoEstilo($matrizInstancias,$m,$n,$probabilidadValoresCaracteristica){
         $matrizPosiblidades= $this->inicializarMatriz4x3();
         $length = count($matrizInstancias);
@@ -196,6 +319,7 @@ class Logica    {
         }
         return $matrizPosiblidades;
     }
+     //algoritmo que obtiene la Probabilidad de cada frecuencia de los distintos tipos de estilo para el ejercicio 4 
     function getProbalidadFrecuenciaEstilo($matrizInstancias,$m,$n,$probabilidadValoresCaracteristica){
         $matrizPosiblidades= $this->inicializarMatriz4x3();
         $length = count($matrizInstancias);
@@ -206,7 +330,7 @@ class Logica    {
 
         }
         return $matrizPosiblidades;
-    }
+    } //algoritmo que obtiene la Probabilidad de cada frecuencia de los distintos tipos de profesor 
     function getProbalidadFrecuenciaProfesores($matrizInstancias,$m,$n,$probabilidadValoresCaracteristica){
         $matrizPosiblidades= $this->inicializarMatriz8x3();
         $length = count($matrizInstancias);
@@ -217,7 +341,7 @@ class Logica    {
 
         }
         return $matrizPosiblidades;
-    }
+    }//algoritmo que obtiene la Probabilidad de cada frecuencia de los distintos tipos de redes 
     function getProbalidadFrecuenciaRedes($matrizInstancias,$m,$n,$probabilidadValoresCaracteristica){
         $matrizPosiblidades= $this->inicializarMatriz4x2();
         $length = count($matrizInstancias);
@@ -229,7 +353,7 @@ class Logica    {
         }
         return $matrizPosiblidades;
     }
-
+    // algoritmo  que  obtiene  el producto de frecuencias
     function getProductoFrecuenciaEstiloAprendizaje($matrizProbabilidadFrecuencias){
         $arrayProducto=  array(0,0,0,0);
         $producto=1;
@@ -244,6 +368,7 @@ class Logica    {
         }
         return $arrayProducto;
     }
+    // algoritmo  que  obtiene  el producto de frecuencias
     function getProductoFrecuenciaRecintoSexoEstilo($matrizProbabilidadFrecuencias){
         $arrayProducto=  array(0,0);
         $producto=1;
@@ -258,6 +383,7 @@ class Logica    {
         }
         return $arrayProducto;
     }
+    // algoritmo  que  obtiene  el producto de frecuencias
     function getProductoFrecuenciaEstilo($matrizProbabilidadFrecuencias){
         $arrayProducto=  array(0,0,0,0);
         $producto=1;
@@ -272,6 +398,7 @@ class Logica    {
         }
         return $arrayProducto;
     }
+     // algoritmo  que  obtiene  el producto de frecuencias
     function getProductoFrecuenciaProfesores($matrizProbabilidadFrecuencias){
         $arrayProducto=  array(0,0,0);
         $producto=1;
@@ -300,7 +427,7 @@ class Logica    {
         }
         return $arrayProducto;
     }
-    
+      //inicializar matrices  
     function inicializarMatriz4x4() {
         $arrayInstancias[0][0]=0;
         $arrayInstancias[0][1]=0;
@@ -375,7 +502,7 @@ class Logica    {
         $arrayInstancias[3][1]=0;
         return $arrayInstancias;
     }
-
+      //algortimo que obtiene las instancias en que aparece cada atributo de la tabla recintoEstilo
     function  getInstanciasEstiloAprendizaje($arrayA,$arrayB){
         $arrayInstancias= $this->inicializarMatriz4x4();
         foreach ($arrayB as $elemento) {
@@ -446,7 +573,7 @@ class Logica    {
             return $arrayInstancias;
                                        
     }
-
+      //algortimo que obtiene las instancias en que aparece cada atributo de la tabla estilosexopromediorecinto
     function  getInstanciasRecinto($arrayA,$arrayB){
         $arrayInstancias= $this->inicializarMatriz4x3();
         foreach ($arrayB as $elemento) {
@@ -476,13 +603,14 @@ class Logica    {
             return $arrayInstancias;
                                        
     }
+    //algortimo que obtiene las instancias en que aparece cada atributo de la tabla estilosexopromediorecinto
     function  getInstanciasEstilo($arrayA,$arrayB){
         $arrayInstancias= $this->inicializarMatriz4x3();
         foreach ($arrayB as $elemento) {
                  if($elemento['Promedio']==$arrayA[1] && $elemento['Estilo']=='ACOMODADOR'){          
                    
                      $arrayInstancias[0][0]= ++$arrayInstancias[0][0];
-                     } if($elemento['Promedio']==$arrayA[0] && $elemento['Estilo']=='ASIMILADOR'){ 
+                     } if($elemento['Promedio']==$arrayA[1] && $elemento['Estilo']=='ASIMILADOR'){ 
                      
                      $arrayInstancias[0][1]= ++$arrayInstancias[0][1];
                      }
@@ -526,6 +654,7 @@ class Logica    {
             return $arrayInstancias;
                                        
     }
+    //algortimo que obtiene las instancias en que aparece cada atributo de la tabla estilosexopromediorecinto
     function  getInstanciasSexo($arrayA,$arrayB){
         $arrayInstancias= $this->inicializarMatriz4x3();
         foreach ($arrayB as $elemento) {
@@ -555,6 +684,7 @@ class Logica    {
             return $arrayInstancias;
                                        
     }
+    //algortimo que obtiene las instancias en que aparece cada atributo de la tabla profesores
     function  getInstanciasProfesores($arrayA,$arrayB){
         $arrayInstancias= $this->inicializarMatriz8x3();
         foreach ($arrayB as $elemento) {
@@ -646,6 +776,7 @@ class Logica    {
             return $arrayInstancias;
                                        
     }
+    //algortimo que obtiene las instancias en que aparece cada atributo de la tabla redes
     function  getInstanciasRedes($arrayA,$arrayB){
         $arrayInstancias= $this->inicializarMatriz4x2();
         foreach ($arrayB as $elemento) {
@@ -683,9 +814,7 @@ class Logica    {
             return $arrayInstancias;
                                        
     }
-
-
-    
+    //algortimo que obtiene las peores probabilidades de cada estilo de aprendizaje
     function getPeorPosibilidadEstiloAprendizaje($arrayB){
         $datos=new ManejoDatos();
         $arrayTuplas=$datos->getCountRecintosEstilo();
@@ -720,7 +849,7 @@ class Logica    {
         
      return $arrayA;
     }
-        
+    //algortimo que obtiene las peores probabilidades de cada recinto Turrialba o Paraiso
     function getPeorPosibilidadEstiloRecinto($arrayB){
         $datos=new ManejoDatos();
         $arrayTuplas=$datos->getCountEstiloSexoPromedioRecinto();
@@ -747,6 +876,7 @@ class Logica    {
         
      return $arrayA;
     }
+    //algortimo que obtiene las peores probabilidades de cada sexo
     function getPeorPosibilidadEstiloSexo($arrayB){
         $datos=new ManejoDatos();
         $arrayTuplas=$datos->getCountEstiloSexoPromedioRecinto();
@@ -773,6 +903,7 @@ class Logica    {
         
      return $arrayA;
     }
+    //algortimo que obtiene las peores probabilidades de cada estilo de aprendizaje del ejercicio 4
     function getPeorPosibilidadEstiloEstiloA($arrayB){
         $datos=new ManejoDatos();
         $arrayTuplas=$datos->getCountEstiloSexoPromedioRecinto();
@@ -807,6 +938,7 @@ class Logica    {
         
      return $arrayA;
     }
+    //algortimo que obtiene las peores probabilidades de cada  tipo de profesor
     function getPeorPosibilidadProfesores($arrayB){
         $datos=new ManejoDatos();
         $arrayTuplas=$datos->getCountProfesores();
@@ -837,6 +969,7 @@ class Logica    {
         
      return $arrayA;
     }
+    //algortimo que obtiene las peores probabilidades de cada  tipo de redes
     function getPeorPosibilidadRedes($arrayB){
         $datos=new ManejoDatos();
         $arrayTuplas=$datos->getCountRedes();
@@ -863,20 +996,14 @@ class Logica    {
         
      return $arrayA;
     }
-
+    // algoritmo que obtiene el numero de veces que se repite una caracteristica
    function getProbabilidadCaracteristica($arrayValores){
-    // arrayValores: numero de veces que se repite un elemento en cada columna 
     $length=count($arrayValores);
      for ($i = 0; $i < $length; $i++) {
        $arrayValores[$i] = 1/$arrayValores[$i];   
      }
      return $arrayValores;
    }
-
-
-
-     
-  
 }
 
 ?>

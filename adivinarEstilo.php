@@ -53,7 +53,7 @@ $arrayA=array($ca,$ec,$ea,$or);
 $logica=new Logica();
 $array = new stdClass();
  
-$array->estiloFinal =$logica->calculoBayesEstiloAprendizaje($arrayA);
+$array->estiloFinal =$logica->adivinarEstiloAprendizaje($arrayA);
 $json = json_encode($array);
 echo $json;
 

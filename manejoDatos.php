@@ -40,12 +40,32 @@ public function getEstiloSexoPromedioRecintoBySexo(){
     return $resultado;
     $this->conexion_db=null;
  }
+public function getEstiloSexoPromedioRecintoBayes(){
+    $sql="Select Sexo,Promedio,Estilo,Recinto from estilosexopromediorecinto_bayes;";
+    $sentencia=$this->conexion_db->prepare($sql);
+    $sentencia->execute(array());
+    $resultado=$sentencia->fetchAll(PDO::FETCH_ASSOC);
+    $sentencia->closeCursor();
+    return $resultado;
+    $this->conexion_db=null;
+ }
+
  /**
      * @return array resultado
      * funcion para obtener los profesores de la BD
      */
 public function getProfesores(){
     $sql="Select * from profesores order by Class";
+    $sentencia=$this->conexion_db->prepare($sql);
+    $sentencia->execute(array());
+    $resultado=$sentencia->fetchAll(PDO::FETCH_ASSOC);
+    $sentencia->closeCursor();
+    return $resultado;
+    $this->conexion_db=null;
+}
+
+public function getProfesoresBayes(){
+    $sql="Select * from profesores_bayes order by Class";
     $sentencia=$this->conexion_db->prepare($sql);
     $sentencia->execute(array());
     $resultado=$sentencia->fetchAll(PDO::FETCH_ASSOC);
@@ -66,12 +86,30 @@ public function getRedes(){
     return $resultado;
     $this->conexion_db=null;
 }
+public function getRedesBayes(){
+    $sql="Select * from redes_bayes order by Class";
+    $sentencia=$this->conexion_db->prepare($sql);
+    $sentencia->execute(array());
+    $resultado=$sentencia->fetchAll(PDO::FETCH_ASSOC);
+    $sentencia->closeCursor();
+    return $resultado;
+    $this->conexion_db=null;
+}
 /**
      * @return array resultado
      * funcion para obtener el recinto con el estilo de aprendizaje de la BD
      */
 public function getRecintosEstilo(){
     $sql="Select * from recintoestilo order by Estilo";
+    $sentencia=$this->conexion_db->prepare($sql);
+    $sentencia->execute(array());
+    $resultado=$sentencia->fetchAll(PDO::FETCH_ASSOC);
+    $sentencia->closeCursor();
+    return $resultado;
+    $this->conexion_db=null;
+}
+public function getRecintosEstiloBayes(){
+    $sql="Select * from recintoestilo_bayes order by Estilo";
     $sentencia=$this->conexion_db->prepare($sql);
     $sentencia->execute(array());
     $resultado=$sentencia->fetchAll(PDO::FETCH_ASSOC);
